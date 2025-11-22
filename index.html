@@ -123,13 +123,18 @@
             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
         }
         
-        /* Hero Section */
+        /* Hero Section - تحسين ارتفاع الهيدر بشكل متناسب مع الشاشات */
         .hero-section {
             background: url('images/header-bg.jpg') center/cover no-repeat;
-            padding: 200px 0; /* زيادة الحشو العمودي لإظهار المزيد من الصورة */
+            padding: 100px 0; /* حشو عمودي مناسب للشاشات الكبيرة */
             margin-bottom: 30px;
-            min-height: 500px; /* زيادة الارتفاع الأدنى لضمان ظهور الصورة */
-            /* تم إلغاء خصائص flexbox لأن القسم فارغ */
+            min-height: 500px; /* ارتفاع أدنى للشاشات الكبيرة */
+            max-height: 600px; /* ارتفاع أقصى لمنع كبر الصورة الزائد */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-attachment: fixed; /* تأثير parallax */
         }
 
         /* زر جروب الواتساب */
@@ -494,24 +499,39 @@
             visibility: visible;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 1200px) {
+        /* Responsive adjustments - تحسين ارتفاع الهيدر للشاشات المختلفة */
+        
+        /* شاشات كبيرة جداً (1200px فأكثر) */
+        @media (min-width: 1200px) {
             .hero-section {
-                min-height: 400px;
-                padding: 70px 0;
+                padding: 120px 0;
+                min-height: 550px;
+                max-height: 650px;
             }
         }
 
-        @media (max-width: 992px) {
+        /* شاشات متوسطة إلى كبيرة (992px إلى 1199px) */
+        @media (max-width: 1199px) and (min-width: 992px) {
+            .hero-section {
+                padding: 100px 0;
+                min-height: 500px;
+                max-height: 600px;
+            }
+        }
+
+        /* شاشات متوسطة (768px إلى 991px) */
+        @media (max-width: 991px) and (min-width: 768px) {
+            .hero-section {
+                padding: 80px 0;
+                min-height: 400px;
+                max-height: 500px;
+                background-attachment: scroll; /* إلغاء تأثير parallax للأداء */
+            }
             .hero-section h1 {
                 font-size: 2rem;
             }
             .section-header h2 {
                 font-size: 1.5rem;
-            }
-            .hero-section {
-                min-height: 350px; /* تقليل الارتفاع للشاشات المتوسطة */
-                padding: 60px 0;
             }
             .navbar-controls {
                 flex-direction: column;
@@ -528,7 +548,8 @@
             }
         }
 
-        @media (max-width: 768px) {
+        /* شاشات صغيرة (576px إلى 767px) */
+        @media (max-width: 767px) and (min-width: 576px) {
             body {
                 padding-top: 70px;
             }
@@ -545,8 +566,10 @@
             }
             
             .hero-section {
-                padding: 50px 0; /* تقليل الحشو أكثر للأجهزة المحمولة */
-                min-height: 250px; /* تقليل الارتفاع أكثر للأجهزة المحمولة */
+                padding: 60px 0;
+                min-height: 320px;
+                max-height: 400px;
+                background-attachment: scroll;
             }
             
             .section-header {
@@ -592,14 +615,28 @@
             }
         }
 
-        @media (max-width: 576px) {
+        /* شاشات صغيرة جداً (575px فأقل) */
+        @media (max-width: 575px) {
             body {
-                padding-top: 70px; /* تقليل المساحة العلوية للشاشات الصغيرة */
+                padding-top: 70px;
+            }
+            
+            .navbar {
+                padding: 0.5rem 0;
+            }
+
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+            .navbar-brand img {
+                height: 28px;
             }
             
             .hero-section {
-                padding: 40px 0; /* تقليل الحشو أكثر للشاشات الصغيرة جداً */
-                min-height: 200px; /* تقليل الارتفاع أكثر للشاشات الصغيرة جداً */
+                padding: 50px 0;
+                min-height: 280px;
+                max-height: 350px;
+                background-attachment: scroll;
             }
             
             .section-header h2 {
@@ -659,6 +696,37 @@
                 padding: 0.3rem 0.6rem !important;
                 font-size: 0.85rem;
             }
+
+            .whatsapp-group-link {
+                font-size: 0.85rem;
+                padding: 8px 16px;
+            }
+        }
+
+        /* شاشات صغيرة جداً (400px فأقل) */
+        @media (max-width: 400px) {
+            .hero-section {
+                padding: 40px 0;
+                min-height: 250px;
+                max-height: 300px;
+            }
+            
+            .navbar-brand {
+                font-size: 0.95rem;
+            }
+            .navbar-brand img {
+                height: 25px;
+            }
+
+            .nav-link {
+                padding: 0.25rem 0.5rem !important;
+                font-size: 0.8rem;
+            }
+
+            .whatsapp-group-link {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
@@ -701,7 +769,7 @@
             <!-- زر جروب الواتساب -->
             <div class="text-center">
                 <!-- !!! هام: قم بتغيير هذا الرابط إلى رابط جروب الواتساب الخاص بك !!! -->
-                <a href="https://chat.whatsapp.com/HhhvtdUhk6BJuhk9YA4oKd?mode=wwt" target="_blank" class="whatsapp-group-link">
+                <a href="https://chat.whatsapp.com/YOUR_INVITE_LINK_HERE" target="_blank" class="whatsapp-group-link">
                     <i class="fab fa-whatsapp"></i>
                     انضم إلى جروب الواتساب لمشاهدة المزيد من العروض الحصرية
                 </a>
@@ -1265,7 +1333,3 @@
     </script>
 </body>
 </html>
-
-
-
-
