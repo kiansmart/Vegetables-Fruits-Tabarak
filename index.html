@@ -34,7 +34,7 @@
             background-color: var(--light-bg);
             color: var(--dark-text);
             overflow-x: hidden; /* منع التمرير الأفقي */
-            padding-top: 80px; /* إضافة مساحة علوية لتجنب تداخل المحتوى مع الشريط الثابت */
+            padding-top: 0; /* إزالة المساحة العلوية */
         }
 
         /* Header & Navbar */
@@ -123,13 +123,11 @@
             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
         }
         
-        /* Hero Section - تحسين ارتفاع الهيدر بشكل متناسب مع الشاشات */
+        /* Hero Section - إصلاح ارتفاع الهيدر وإظهار الصورة بشكل كامل */
         .hero-section {
             background: url('images/header-bg.jpg') center/cover no-repeat;
-            padding: 100px 0; /* حشو عمودي مناسب للشاشات الكبيرة */
+            margin-top: 80px; /* إضافة مساحة علوية لتجنب تداخل الصورة مع الشريط الثابت */
             margin-bottom: 30px;
-            min-height: 500px; /* ارتفاع أدنى للشاشات الكبيرة */
-            max-height: 600px; /* ارتفاع أقصى لمنع كبر الصورة الزائد */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -550,10 +548,6 @@
 
         /* شاشات صغيرة (576px إلى 767px) */
         @media (max-width: 767px) and (min-width: 576px) {
-            body {
-                padding-top: 70px;
-            }
-            
             .navbar {
                 padding: 0.75rem 0;
             }
@@ -617,10 +611,6 @@
 
         /* شاشات صغيرة جداً (575px فأقل) */
         @media (max-width: 575px) {
-            body {
-                padding-top: 70px;
-            }
-            
             .navbar {
                 padding: 0.5rem 0;
             }
@@ -1271,7 +1261,7 @@
                     phone: document.getElementById('customerPhone').value,
                     address: document.getElementById('customerAddress').value,
                     building: document.getElementById('buildingNumber').value,
-                    apartment: document.getElementById('apartmentNumber').value,
+                    apartment: document.getElementById('customerAddress').value,
                     landmark: document.getElementById('landmark').value
                 };
 
